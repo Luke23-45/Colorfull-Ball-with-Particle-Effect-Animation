@@ -6,10 +6,10 @@
 #include <cstdlib>
 #include <cmath>
 
-//----------------------------
-// Utility: HSV to RGB conversion
+
+// HSV to RGB conversion
 // h: 0-360, s: 0-1, v: 0-1
-//----------------------------
+
 SDL_Color HSVtoRGB(float h, float s, float v) {
     int i = int(h / 60.0f) % 6;
     float f = (h / 60.0f) - i;
@@ -26,9 +26,9 @@ SDL_Color HSVtoRGB(float h, float s, float v) {
     return SDL_Color{ (Uint8)(r * 255), (Uint8)(g * 255), (Uint8)(b * 255), 255 };
 }
 
-//----------------------------
-// Utility: Draw a filled circle
-//----------------------------
+
+//  Draw a filled circle
+
 void SDL_RenderFillCircle(SDL_Renderer* renderer, int centerX, int centerY, int radius) {
     for (int w = 0; w < radius * 2; w++) {
         for (int h = 0; h < radius * 2; h++) {
@@ -41,9 +41,9 @@ void SDL_RenderFillCircle(SDL_Renderer* renderer, int centerX, int centerY, int 
     }
 }
 
-//----------------------------
+
 // Structures for Trail and Particle effects
-//----------------------------
+
 struct TrailPoint {
     int x, y;
 };
@@ -73,7 +73,7 @@ int main() {
         return 1;
     }
     
-    // Create renderer with VSYNC and enable blending
+    // Create renderer 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) {
@@ -119,7 +119,7 @@ int main() {
             }
         }
         
-        // Compute dynamic hue offset (cycles over time)
+        // Compute dynamic hue offset 
         float hueOffset = fmod(SDL_GetTicks() / 10.0f, 360.0f);
         
         // Move the ball
@@ -137,7 +137,7 @@ int main() {
         if (trail.size() > MAX_TRAIL)
             trail.pop_back();
         
-        // Spawn particles around the ball for extra effect
+        // Spawn particles around the ball 
         for (int i = 0; i < PARTICLES_PER_FRAME; ++i) {
             Particle p;
             // Spawn near the ball with a small random offset
@@ -146,7 +146,7 @@ int main() {
             // Random velocity between -2 and 2
             p.vx = ((std::rand() % 100) / 50.0f - 1.0f) * 4.0f;
             p.vy = ((std::rand() % 100) / 50.0f - 1.0f) * 4.0f;
-            p.maxLife = p.life = 30 + std::rand() % 20;  // 30-50 frames lifetime
+            p.maxLife = p.life = 30 + std::rand() % 20;  
             // Set a random base hue for this particle
             p.baseHue = std::rand() % 360;
             particles.push_back(p);
@@ -177,7 +177,7 @@ int main() {
             int trailRadius = (int)(ballRadius * factor);
             if (trailRadius < 1) trailRadius = 1;
             
-            // Compute a dynamic rainbow color based on trail index and global hue offset.
+            // Computing a dynamic rainbow color based on trail index and global hue offset.
             float hue = fmod(index * (360.0f / MAX_TRAIL) + hueOffset, 360.0f);
             SDL_Color trailColor = HSVtoRGB(hue, 1.0f, 1.0f);
             // Fade out alpha based on factor
@@ -190,7 +190,7 @@ int main() {
         // Draw particles around the ball with dynamic color
         for (const auto &p : particles) {
             float lifeRatio = (float)p.life / p.maxLife;
-            // Each particle's dynamic hue is its base hue plus the global offset.
+
             float particleHue = fmod(p.baseHue + hueOffset, 360.0f);
             SDL_Color particleColor = HSVtoRGB(particleHue, 1.0f, 1.0f);
             particleColor.a = (Uint8)(lifeRatio * 255);
