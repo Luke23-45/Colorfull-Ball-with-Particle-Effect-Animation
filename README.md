@@ -1,4 +1,4 @@
-# Colorfull Ball with Particle Effect Animation
+# Colourful Ball with Particle Effect Animation
 
 A simple C++ project using SDL2 to render a bouncing ball with dynamic colors, particle effects, and a trailing rainbow effect.
 
@@ -14,8 +14,8 @@ Ensure you have the following installed:
 * `colorfull_ball.cc`: Main C++ source file.
 * `Makefile`: Build the project.
 * `src/`: Source code directory.
-    * `include/`: Header files (SDL2 headers are expected to be found here or in system include paths).
-    * `lib/`: SDL related libraries (SDL2 libraries are expected to be linked).
+    * `include/`: Header files 
+    * `lib/`: SDL related libraries 
 
 ### Installation
 1. Clone the repository:
@@ -26,7 +26,7 @@ Ensure you have the following installed:
 
 This project uses `make` for building. To build the project, run the following command in your terminal:
 
-2. Navigate to the project directory:
+1. Navigate to the project directory:
     ```bash
     cd Colorfull-Ball-with-Particle-Effect-Animation
     ```
@@ -72,7 +72,6 @@ The project is structured as follows:
 
 - **`Makefile`**:  Contains the build configurations for compiling the `colorfull_ball.cc` file into an executable. It should handle compiling with SDL2 and creating the executable.
 
-- **`src/include/` and `src/lib/`**: While this simple project might not explicitly separate headers and libraries into these folders in this basic example, the structure is prepared for future 확장. In a more complex project, SDL2 headers would typically be found in `src/include/` or system include paths, and SDL2 libraries would be linked from `src/lib/` or system library paths as configured in the `Makefile`.
 
 ## Demo Video
 Check out the project demo video on YouTube: [https://www.youtube.com/watch?v=McOcbGHyAWA](https://www.youtube.com/watch?v=McOcbGHyAWA)
