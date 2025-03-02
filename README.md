@@ -15,7 +15,7 @@ Ensure you have the following installed:
 * `Makefile`: Build the project.
 * `src/`: Source code directory.
     * `include/`: Header files 
-    * `lib/`: SDL related libraries 
+
 
 ### Installation
 1. Clone the repository:
@@ -36,7 +36,7 @@ This project uses `make` for building. To build the project, run the following c
     ```
 4. Run the executable (Linux/macOS):
     ```bash
-    ./Colorfull-Ball-with-Particle-Effect-Animation
+    ./main
     ```
 5. Run the executable (Windows):
     ```bash
